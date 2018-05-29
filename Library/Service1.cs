@@ -21,6 +21,7 @@ namespace Library
             FileStream myFile;
             Console.WriteLine("Downloading file: " + fileName);
             string filePath = Path.Combine(System.Environment.CurrentDirectory, "files",  fileName);
+            
             try
             {
                 myFile = File.OpenRead(filePath);
@@ -31,6 +32,12 @@ namespace Library
                 Console.WriteLine(e.ToString());
                 throw e;
             }
+            OperationContext clientContext = OperationContext.Current;
+            clientContext.OperationCompleted += new EventHandler(delegate (object sender, EventArgs args)
+            {
+                if (myFile != null)
+                    myFile.Dispose();
+            });
             response.fileName = fileName;
             data.TryGetValue(fileName, out response.description);
             response.dataStream = myFile;

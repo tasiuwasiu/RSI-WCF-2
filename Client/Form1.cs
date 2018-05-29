@@ -131,6 +131,7 @@ namespace Client
             int counter = 0;
             byte[] buffer = new byte[bufferLength];
 
+            using(instream)
             using (FileStream outstream = File.Open(filePath, FileMode.Create, FileAccess.Write))
             {
                 while ((counter = instream.Read(buffer, 0, bufferLength)) > 0)
@@ -138,8 +139,8 @@ namespace Client
                     outstream.Write(buffer, 0, counter);
                 }
             }
-
-            instream.Close();
+            //instream.Dispose();
+            //instream.Close();
         }
     }
 }
