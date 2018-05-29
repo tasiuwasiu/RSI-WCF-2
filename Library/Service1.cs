@@ -8,80 +8,65 @@ using System.Text;
 
 namespace Library
 {
-    // NOTE: You can use the "Rename" command on the "Refactor" menu to change the class name "Service1" in both code and config file together.
+    [ServiceBehavior(InstanceContextMode = InstanceContextMode.Single)]
     public class Service1 : IService1
     {
-        List<string> nazwy = new List<string>();
-        List<string> opisy = new List<string>();
+        Dictionary<string, string> data = new Dictionary<string, string>();
+        List<string> names = new List<string>();
 
         public StreamMessage downloadFile(RequestMessage req)
         {
             StreamMessage response = new StreamMessage();
-            string nazwa = req.nazwa;
+            string fileName = req.name;
             FileStream myFile;
-            Console.WriteLine("Wywolano pobieranie pliku: " + nazwa);
-            string filePath = Path.Combine(System.Environment.CurrentDirectory, "files",  nazwa);
+            Console.WriteLine("Downloading file: " + fileName);
+            string filePath = Path.Combine(System.Environment.CurrentDirectory, "files",  fileName);
             try
             {
                 myFile = File.OpenRead(filePath);
             }
             catch (IOException e)
             {
-                Console.WriteLine(String.Format("wyjatek otwarcia pliku {0}", filePath));
+                Console.WriteLine(String.Format("Error downloading file: {0}", filePath));
                 Console.WriteLine(e.ToString());
                 throw e;
             }
-            response.nazwaPliku = nazwa;
-            response.opis = "  ";
-            response.dane = myFile;
+            response.fileName = fileName;
+            data.TryGetValue(fileName, out response.description);
+            response.dataStream = myFile;
+            Console.WriteLine();
             return response;
         }
 
         public AllFilesMessage getFiles()
         {
             AllFilesMessage response = new AllFilesMessage();
-            response.nazwy = new List<string>();
-            foreach (string e in nazwy)
-            {
-                Console.WriteLine("x");
-                response.nazwy.Add(e);
-            }
-            response.opisy = opisy;
-            try
-            {
-
-                Console.WriteLine(response.nazwy[0]);
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.StackTrace);
-            }
+            Dictionary<string,string> allData = new Dictionary<string, string>();
+            response.data = data;
             return response;
         }
 
-        public void uploadFile(StreamMessage stream)
+        public void uploadFile(StreamMessage req)
         {
-            string filePath = Path.Combine(System.Environment.CurrentDirectory, "files", stream.nazwaPliku);
-            string opis = stream.nazwaPliku;
-            Stream instream = stream.dane;
+            string filePath = Path.Combine(System.Environment.CurrentDirectory, "files", req.fileName);
+            string fileName = req.fileName;
+            string description = req.description;
+            Stream instream = req.dataStream;
             const int bufferLength = 8192;
-            int bytecount = 0;
             int counter = 0;
             byte[] buffer = new byte[bufferLength];
-            Console.WriteLine("Zapisje plik {0}", filePath);
+            Console.WriteLine("Uploading file: {0}", fileName);
             try
             {
-                FileStream outstream = File.Open(filePath, FileMode.Create, FileAccess.Write);
-
-                while ((counter = instream.Read(buffer, 0, bufferLength)) > 0)
+                
+                using (FileStream outstream = File.Open(filePath, FileMode.OpenOrCreate, FileAccess.Write))
                 {
-                    outstream.Write(buffer, 0, counter);
-                    Console.Write(".{0}", counter);
-                    bytecount += counter;
+
+                    while ((counter = instream.Read(buffer, 0, bufferLength)) > 0)
+                    {
+                        outstream.Write(buffer, 0, counter);
+                    }
                 }
-                Console.WriteLine();
-                Console.WriteLine("Zapisano {0} bajtow", bytecount);
-                outstream.Close();
             }
             catch (Exception ex)
             {
@@ -89,10 +74,13 @@ namespace Library
             }
             
             instream.Close();
+            Console.WriteLine("Uploaded file: {0}", fileName);
             Console.WriteLine();
-            Console.WriteLine("Plik {0} zapisany", filePath);
-            nazwy.Add(stream.nazwaPliku);
-            opisy.Add(opis);
+            if (data.ContainsKey(fileName))
+                data.Remove(fileName);
+
+            data.Add(fileName, description);
+
         }
     }
 }

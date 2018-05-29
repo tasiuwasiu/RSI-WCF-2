@@ -16,13 +16,14 @@ namespace Client
         string filePath;
         Form1 mainForm;
 
-        public DescriptionInputForm(string fileName, string filePath, Form1 mainForm)
+        public DescriptionInputForm(string fName, string fPath, Form1 mainForm)
         {
-            this.fileName = fileName;
-            this.filePath = filePath;
+            fileName = fName;
+            filePath = fPath;
             this.mainForm = mainForm;
-            lab_imageName.Text = fileName;
+            
             InitializeComponent();
+            lab_imageName.Text = fileName;
         }
 
         private void button1_Click(object sender, EventArgs e)

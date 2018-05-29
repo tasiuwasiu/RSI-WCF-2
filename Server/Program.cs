@@ -17,8 +17,8 @@ namespace Server
             ServiceHost mojHost = new ServiceHost(typeof(Service1), baseAddress);
             BasicHttpBinding binding = new BasicHttpBinding();
             binding.TransferMode = TransferMode.Streamed;
-            binding.MaxReceivedMessageSize = 100000000000;
-            binding.MaxBufferSize = 8192;
+            binding.MaxReceivedMessageSize = 20000000;
+            binding.MaxBufferSize = 20000000;
 
             try
             {
@@ -28,6 +28,7 @@ namespace Server
                 mojHost.Description.Behaviors.Add(smb);
                 mojHost.Open();
                 Console.WriteLine("Serwis jest uruchomiony");
+                
                 Console.ReadLine();
                 mojHost.Close();
             }

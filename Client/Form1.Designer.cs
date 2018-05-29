@@ -40,13 +40,13 @@
             this.listBox1.FormattingEnabled = true;
             this.listBox1.Location = new System.Drawing.Point(12, 12);
             this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(581, 498);
+            this.listBox1.Size = new System.Drawing.Size(271, 303);
             this.listBox1.TabIndex = 0;
             this.listBox1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.listbox1_MouseMove);
             // 
             // but_upload
             // 
-            this.but_upload.Location = new System.Drawing.Point(13, 521);
+            this.but_upload.Location = new System.Drawing.Point(12, 330);
             this.but_upload.Name = "but_upload";
             this.but_upload.Size = new System.Drawing.Size(119, 32);
             this.but_upload.TabIndex = 1;
@@ -56,7 +56,7 @@
             // 
             // but_download
             // 
-            this.but_download.Location = new System.Drawing.Point(159, 521);
+            this.but_download.Location = new System.Drawing.Point(159, 330);
             this.but_download.Name = "but_download";
             this.but_download.Size = new System.Drawing.Size(124, 32);
             this.but_download.TabIndex = 2;
@@ -66,9 +66,9 @@
             // 
             // but_refresh
             // 
-            this.but_refresh.Location = new System.Drawing.Point(310, 521);
+            this.but_refresh.Location = new System.Drawing.Point(12, 380);
             this.but_refresh.Name = "but_refresh";
-            this.but_refresh.Size = new System.Drawing.Size(123, 32);
+            this.but_refresh.Size = new System.Drawing.Size(119, 32);
             this.but_refresh.TabIndex = 3;
             this.but_refresh.Text = "Refresh";
             this.but_refresh.UseVisualStyleBackColor = true;
@@ -76,9 +76,9 @@
             // 
             // but_exit
             // 
-            this.but_exit.Location = new System.Drawing.Point(459, 521);
+            this.but_exit.Location = new System.Drawing.Point(159, 380);
             this.but_exit.Name = "but_exit";
-            this.but_exit.Size = new System.Drawing.Size(134, 32);
+            this.but_exit.Size = new System.Drawing.Size(124, 32);
             this.but_exit.TabIndex = 4;
             this.but_exit.Text = "Exit";
             this.but_exit.UseVisualStyleBackColor = true;
@@ -88,7 +88,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(605, 565);
+            this.ClientSize = new System.Drawing.Size(303, 434);
             this.Controls.Add(this.but_exit);
             this.Controls.Add(this.but_refresh);
             this.Controls.Add(this.but_download);

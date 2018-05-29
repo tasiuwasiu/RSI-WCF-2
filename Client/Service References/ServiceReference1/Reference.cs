@@ -29,10 +29,10 @@ namespace Client.ServiceReference1 {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/uploadFile", ReplyAction="http://tempuri.org/IService1/uploadFileResponse")]
         System.Threading.Tasks.Task<Client.ServiceReference1.uploadFileResponse> uploadFileAsync(Client.ServiceReference1.StreamMessage request);
         
+        // CODEGEN: Generating message contract since the operation getFiles is neither RPC nor document wrapped.
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/getFiles", ReplyAction="http://tempuri.org/IService1/getFilesResponse")]
         Client.ServiceReference1.AllFilesMessage getFiles(Client.ServiceReference1.getFilesRequest request);
         
-        // CODEGEN: Generating message contract since the operation has multiple return values.
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/getFiles", ReplyAction="http://tempuri.org/IService1/getFilesResponse")]
         System.Threading.Tasks.Task<Client.ServiceReference1.AllFilesMessage> getFilesAsync(Client.ServiceReference1.getFilesRequest request);
     }
@@ -44,13 +44,13 @@ namespace Client.ServiceReference1 {
     public partial class RequestMessage {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=0)]
-        public string nazwa;
+        public string name;
         
         public RequestMessage() {
         }
         
-        public RequestMessage(string nazwa) {
-            this.nazwa = nazwa;
+        public RequestMessage(string name) {
+            this.name = name;
         }
     }
     
@@ -61,21 +61,21 @@ namespace Client.ServiceReference1 {
     public partial class StreamMessage {
         
         [System.ServiceModel.MessageHeaderAttribute(Namespace="http://tempuri.org/")]
-        public string nazwaPliku;
+        public string description;
         
         [System.ServiceModel.MessageHeaderAttribute(Namespace="http://tempuri.org/")]
-        public string opis;
+        public string fileName;
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=0)]
-        public System.IO.Stream dane;
+        public System.IO.Stream dataStream;
         
         public StreamMessage() {
         }
         
-        public StreamMessage(string nazwaPliku, string opis, System.IO.Stream dane) {
-            this.nazwaPliku = nazwaPliku;
-            this.opis = opis;
-            this.dane = dane;
+        public StreamMessage(string description, string fileName, System.IO.Stream dataStream) {
+            this.description = description;
+            this.fileName = fileName;
+            this.dataStream = dataStream;
         }
     }
     
@@ -91,6 +91,7 @@ namespace Client.ServiceReference1 {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
     [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
     public partial class getFilesRequest {
         
@@ -100,21 +101,18 @@ namespace Client.ServiceReference1 {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
     [System.ServiceModel.MessageContractAttribute(WrapperName="AllFilesMessage", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
     public partial class AllFilesMessage {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=0)]
-        public string[] nazwy;
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=1)]
-        public string[] opisy;
+        public System.Collections.Generic.Dictionary<string, string> data;
         
         public AllFilesMessage() {
         }
         
-        public AllFilesMessage(string[] nazwy, string[] opisy) {
-            this.nazwy = nazwy;
-            this.opisy = opisy;
+        public AllFilesMessage(System.Collections.Generic.Dictionary<string, string> data) {
+            this.data = data;
         }
     }
     
@@ -150,13 +148,13 @@ namespace Client.ServiceReference1 {
             return base.Channel.downloadFile(request);
         }
         
-        public string downloadFile(string nazwa, out string opis, out System.IO.Stream dane) {
+        public string downloadFile(string name, out string fileName, out System.IO.Stream dataStream) {
             Client.ServiceReference1.RequestMessage inValue = new Client.ServiceReference1.RequestMessage();
-            inValue.nazwa = nazwa;
+            inValue.name = name;
             Client.ServiceReference1.StreamMessage retVal = ((Client.ServiceReference1.IService1)(this)).downloadFile(inValue);
-            opis = retVal.opis;
-            dane = retVal.dane;
-            return retVal.nazwaPliku;
+            fileName = retVal.fileName;
+            dataStream = retVal.dataStream;
+            return retVal.description;
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
@@ -164,9 +162,9 @@ namespace Client.ServiceReference1 {
             return base.Channel.downloadFileAsync(request);
         }
         
-        public System.Threading.Tasks.Task<Client.ServiceReference1.StreamMessage> downloadFileAsync(string nazwa) {
+        public System.Threading.Tasks.Task<Client.ServiceReference1.StreamMessage> downloadFileAsync(string name) {
             Client.ServiceReference1.RequestMessage inValue = new Client.ServiceReference1.RequestMessage();
-            inValue.nazwa = nazwa;
+            inValue.name = name;
             return ((Client.ServiceReference1.IService1)(this)).downloadFileAsync(inValue);
         }
         
@@ -175,11 +173,11 @@ namespace Client.ServiceReference1 {
             return base.Channel.uploadFile(request);
         }
         
-        public void uploadFile(string nazwaPliku, string opis, System.IO.Stream dane) {
+        public void uploadFile(string description, string fileName, System.IO.Stream dataStream) {
             Client.ServiceReference1.StreamMessage inValue = new Client.ServiceReference1.StreamMessage();
-            inValue.nazwaPliku = nazwaPliku;
-            inValue.opis = opis;
-            inValue.dane = dane;
+            inValue.description = description;
+            inValue.fileName = fileName;
+            inValue.dataStream = dataStream;
             Client.ServiceReference1.uploadFileResponse retVal = ((Client.ServiceReference1.IService1)(this)).uploadFile(inValue);
         }
         
@@ -188,11 +186,11 @@ namespace Client.ServiceReference1 {
             return base.Channel.uploadFileAsync(request);
         }
         
-        public System.Threading.Tasks.Task<Client.ServiceReference1.uploadFileResponse> uploadFileAsync(string nazwaPliku, string opis, System.IO.Stream dane) {
+        public System.Threading.Tasks.Task<Client.ServiceReference1.uploadFileResponse> uploadFileAsync(string description, string fileName, System.IO.Stream dataStream) {
             Client.ServiceReference1.StreamMessage inValue = new Client.ServiceReference1.StreamMessage();
-            inValue.nazwaPliku = nazwaPliku;
-            inValue.opis = opis;
-            inValue.dane = dane;
+            inValue.description = description;
+            inValue.fileName = fileName;
+            inValue.dataStream = dataStream;
             return ((Client.ServiceReference1.IService1)(this)).uploadFileAsync(inValue);
         }
         
@@ -201,15 +199,20 @@ namespace Client.ServiceReference1 {
             return base.Channel.getFiles(request);
         }
         
-        public string[] getFiles(out string[] opisy) {
+        public System.Collections.Generic.Dictionary<string, string> getFiles() {
             Client.ServiceReference1.getFilesRequest inValue = new Client.ServiceReference1.getFilesRequest();
             Client.ServiceReference1.AllFilesMessage retVal = ((Client.ServiceReference1.IService1)(this)).getFiles(inValue);
-            opisy = retVal.opisy;
-            return retVal.nazwy;
+            return retVal.data;
         }
         
-        public System.Threading.Tasks.Task<Client.ServiceReference1.AllFilesMessage> getFilesAsync(Client.ServiceReference1.getFilesRequest request) {
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.Threading.Tasks.Task<Client.ServiceReference1.AllFilesMessage> Client.ServiceReference1.IService1.getFilesAsync(Client.ServiceReference1.getFilesRequest request) {
             return base.Channel.getFilesAsync(request);
+        }
+        
+        public System.Threading.Tasks.Task<Client.ServiceReference1.AllFilesMessage> getFilesAsync() {
+            Client.ServiceReference1.getFilesRequest inValue = new Client.ServiceReference1.getFilesRequest();
+            return ((Client.ServiceReference1.IService1)(this)).getFilesAsync(inValue);
         }
     }
 }

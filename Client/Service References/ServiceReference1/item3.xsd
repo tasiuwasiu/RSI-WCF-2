@@ -5,24 +5,23 @@
   <xs:element name="RequestMessage">
     <xs:complexType>
       <xs:sequence>
-        <xs:element minOccurs="0" name="nazwa" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="name" nillable="true" type="xs:string" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="StreamMessage">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q1="http://schemas.microsoft.com/Message" name="dane" type="q1:StreamBody" />
+        <xs:element xmlns:q1="http://schemas.microsoft.com/Message" name="dataStream" type="q1:StreamBody" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="nazwaPliku" nillable="true" type="xs:string" />
-  <xs:element name="opis" nillable="true" type="xs:string" />
+  <xs:element name="description" nillable="true" type="xs:string" />
+  <xs:element name="fileName" nillable="true" type="xs:string" />
   <xs:element name="AllFilesMessage">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q2="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="nazwy" nillable="true" type="q2:ArrayOfstring" />
-        <xs:element xmlns:q3="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="opisy" nillable="true" type="q3:ArrayOfstring" />
+        <xs:element xmlns:q2="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="data" nillable="true" type="q2:ArrayOfKeyValueOfstringstring" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

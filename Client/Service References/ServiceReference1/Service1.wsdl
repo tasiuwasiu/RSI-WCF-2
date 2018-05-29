@@ -15,8 +15,8 @@
     <wsdl:part name="parameters" element="tns:StreamMessage" />
   </wsdl:message>
   <wsdl:message name="StreamMessage_Headers">
-    <wsdl:part name="nazwaPliku" element="tns:nazwaPliku" />
-    <wsdl:part name="opis" element="tns:opis" />
+    <wsdl:part name="description" element="tns:description" />
+    <wsdl:part name="fileName" element="tns:fileName" />
   </wsdl:message>
   <wsdl:message name="IService1_uploadFile_OutputMessage" />
   <wsdl:message name="IService1_getFiles_InputMessage" />
@@ -45,16 +45,16 @@
         <soap:body use="literal" />
       </wsdl:input>
       <wsdl:output name="StreamMessage">
-        <soap:header message="tns:StreamMessage_Headers" part="nazwaPliku" use="literal" />
-        <soap:header message="tns:StreamMessage_Headers" part="opis" use="literal" />
+        <soap:header message="tns:StreamMessage_Headers" part="description" use="literal" />
+        <soap:header message="tns:StreamMessage_Headers" part="fileName" use="literal" />
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="uploadFile">
       <soap:operation soapAction="http://tempuri.org/IService1/uploadFile" style="document" />
       <wsdl:input name="StreamMessage">
-        <soap:header message="tns:StreamMessage_Headers" part="nazwaPliku" use="literal" />
-        <soap:header message="tns:StreamMessage_Headers" part="opis" use="literal" />
+        <soap:header message="tns:StreamMessage_Headers" part="description" use="literal" />
+        <soap:header message="tns:StreamMessage_Headers" part="fileName" use="literal" />
         <soap:body use="literal" />
       </wsdl:input>
       <wsdl:output>

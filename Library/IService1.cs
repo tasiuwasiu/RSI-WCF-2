@@ -27,30 +27,27 @@ namespace Library
     public class StreamMessage
     {
         [MessageHeader]
-        public string nazwaPliku;
+        public string fileName;
 
         [MessageHeader]
-        public string opis;
+        public string description;
 
         [MessageBodyMember]
-        public Stream dane;
+        public Stream dataStream;
     }
 
     [MessageContract]
     public class RequestMessage
     {
         [MessageBodyMember]
-        public string nazwa;
+        public string name;
     }
 
     [MessageContract]
     public class AllFilesMessage
     {
         [MessageBodyMember]
-        public List<string> nazwy;
-
-        [MessageBodyMember]
-        public List<string> opisy;
+        public Dictionary<string, string> data;
     }
 
 
