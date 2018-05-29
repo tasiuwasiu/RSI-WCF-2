@@ -1,0 +1,1 @@
+NDSearch.OnPrefixDataLoaded("dat",["Variable"],[["data",,[["Library.AllFilesMessage",,,,0,"File:Library/IService1.cs:Library.AllFilesMessage.data","CSharpClass:Library.AllFilesMessage:data"]]],["dataStream",,[["Library.StreamMessage",,,,0,"File:Library/IService1.cs:Library.StreamMessage.dataStream","CSharpClass:Library.StreamMessage:dataStream"]]]]);

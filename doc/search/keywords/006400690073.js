@@ -1,0 +1,1 @@
+NDSearch.OnPrefixDataLoaded("dis",["Function"],[["Dispose",,[["Client.DescriptionInputForm",,,,0,"File:Client/DescriptionInputForm.Designer.cs:Client.DescriptionInputForm.Dispose","CSharpClass:Client.DescriptionInputForm:Dispose"],["Client.Form1",,,,0,"File:Client/Form1.Designer.cs:Client.Form1.Dispose","CSharpClass:Client.Form1:Dispose"]]]]);

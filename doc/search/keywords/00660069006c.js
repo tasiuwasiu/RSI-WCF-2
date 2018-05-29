@@ -1,0 +1,1 @@
+NDSearch.OnPrefixDataLoaded("fil",["Variable"],[["fileName",,[["Library.StreamMessage",,,,0,"File:Library/IService1.cs:Library.StreamMessage.fileName","CSharpClass:Library.StreamMessage:fileName"]]]]);

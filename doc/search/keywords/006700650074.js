@@ -1,0 +1,1 @@
+NDSearch.OnPrefixDataLoaded("get",["Function"],[["getFiles",,[["Library.IService1",,,,0,"File:Library/IService1.cs:Library.IService1.getFiles","CSharpClass:Library.IService1:getFiles"],["Library.Service1",,,,0,"File:Library/Service1.cs:Library.Service1.getFiles","CSharpClass:Library.Service1:getFiles"]]]]);

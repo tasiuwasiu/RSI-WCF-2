@@ -1,0 +1,1 @@
+NDMenu.OnSectionLoaded("files.js",[[2,"Client","File:Client/",[[1,"DescriptionInputForm.cs"],[1,"DescriptionInputForm.Designer.cs"],[1,"Form1.cs"],[1,"Form1.Designer.cs"],[2,"Properties","File:Client/Properties/",[[1,"Resources.Designer.cs"]]]]],[2,"Library","File:Library/",[[1,"IService1.cs"],[1,"Service1.cs"]]],[2,"Server","File:Server/",[[1,"Program.cs"]]]]);

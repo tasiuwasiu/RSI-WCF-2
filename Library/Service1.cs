@@ -8,12 +8,21 @@ using System.Text;
 
 namespace Library
 {
+    /// <summary>
+    /// Klasa implementujaca interfejs kontraktu serwisu 
+    /// Autor: Rafal Wasik
+    /// </summary>
     [ServiceBehavior(InstanceContextMode = InstanceContextMode.Single)]
     public class Service1 : IService1
     {
         Dictionary<string, string> data = new Dictionary<string, string>();
         List<string> names = new List<string>();
 
+        /// <summary>
+        /// Metoda obslusujaca zapytanie klienta o pobranie pliku
+        /// </summary>
+        /// <param name="req">Obiekt RequestMessage zawierajacy nazwe pliku</param>
+        /// <returns>Obiekt StreamMessage z informacjami do pobrania pliku</returns>
         public StreamMessage downloadFile(RequestMessage req)
         {
             StreamMessage response = new StreamMessage();
@@ -45,6 +54,10 @@ namespace Library
             return response;
         }
 
+        /// <summary>
+        /// Metoda obslugujaca zapytanie klienta o wszystkie dostepne pliki
+        /// </summary>
+        /// <returns>Obiekt AllFilesMessage zawierajacy wszystkie nazwy i opisy plikow</returns>
         public AllFilesMessage getFiles()
         {
             AllFilesMessage response = new AllFilesMessage();
@@ -53,6 +66,10 @@ namespace Library
             return response;
         }
 
+        /// <summary>
+        /// Metoda obslugujaca wyslanie pliku z klienta na serwer
+        /// </summary>
+        /// <param name="req">Obiekt StreamMessage z informacjami do wyslania pliku</param>
         public void uploadFile(StreamMessage req)
         {
             string filePath = Path.Combine(System.Environment.CurrentDirectory, "files", req.fileName);

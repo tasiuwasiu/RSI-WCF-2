@@ -1,17 +1,15 @@
 ﻿using Client.ServiceReference1;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Client
 {
+    /// <summary>
+    /// Klasa obslugujaca klienta
+    ///  Autor: Rafal Wasik
+    /// </summary>
     public partial class Form1 : Form
     {
         List<string> names = new List<string>();
@@ -20,6 +18,9 @@ namespace Client
 
         Service1Client client = new Service1Client();
 
+        /// <summary>
+        /// Konstruktor okna klienta
+        /// </summary>
         public Form1()
         {
             InitializeComponent();
@@ -27,7 +28,9 @@ namespace Client
 
         }
 
-        //upload
+        /// <summary>
+        /// Metoda obslugujaca funkcje wysylania pliku
+        /// </summary>
         private void but_upload_Click(object sender, EventArgs e)
         {
             OpenFileDialog fileDialog = new OpenFileDialog();
@@ -46,6 +49,11 @@ namespace Client
 
         }
 
+        /// <summary>
+        /// Metoda wysylajaca plik na serwer
+        /// </summary>
+        /// <param name="filePath">sciezka do pliku</param>
+        /// <param name="description">opis pliku</param>
         public void uploadFile(string filePath, string description)
         {
             string fileName = Path.GetFileName(filePath);
@@ -65,14 +73,18 @@ namespace Client
             }
         }
 
-        //exit
+        /// <summary>
+        /// Metoda obslugujaca zamykanie klienta
+        /// </summary>
         private void but_exit_Click(object sender, EventArgs e)
         {
             client.Close();
             Application.Exit();
         }
 
-        //refresh
+        /// <summary>
+        /// Metoda obslugujaca pobieranie informacji o plikach na serwerze
+        /// </summary>
         private void but_refresh_Click(object sender, EventArgs e)
         {
             names.Clear();
@@ -83,7 +95,9 @@ namespace Client
             listBox1.DataSource = names;
         }
 
-        //download
+        /// <summary>
+        /// Metoda obslugujaca pobieranie pliku z serwera
+        /// </summary>
         private void but_download_Click(object sender, EventArgs e)
         {
             if (listBox1.SelectedItem != null)
@@ -105,6 +119,9 @@ namespace Client
             }
         }
 
+        /// <summary>
+        /// Metoda obslugujaca pokazywanie sie opisu pliku
+        /// </summary>
         private void listbox1_MouseMove(object sender, MouseEventArgs e)
         {
             int index = listBox1.IndexFromPoint(e.Location);
@@ -124,6 +141,11 @@ namespace Client
             }
         }
 
+        /// <summary>
+        /// Metoda pobiera plik z serwera
+        /// </summary>
+        /// <param name="instream">strumien zawierajacy plik</param>
+        /// <param name="filePath">sciezka do zapisu pliku</param>
         private void downloadFile(System.IO.Stream instream, string filePath)
         {
             const int bufferLength = 8192;
@@ -139,8 +161,6 @@ namespace Client
                     outstream.Write(buffer, 0, counter);
                 }
             }
-            //instream.Dispose();
-            //instream.Close();
         }
     }
 }

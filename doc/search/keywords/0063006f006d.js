@@ -1,0 +1,1 @@
+NDSearch.OnPrefixDataLoaded("com",["Variable"],[["components",,[["Client.DescriptionInputForm",,,,0,"File:Client/DescriptionInputForm.Designer.cs:Client.DescriptionInputForm.components","CSharpClass:Client.DescriptionInputForm:components"],["Client.Form1",,,,0,"File:Client/Form1.Designer.cs:Client.Form1.components","CSharpClass:Client.Form1:components"]]]]);

@@ -1,0 +1,1 @@
+NDSearch.OnPrefixDataLoaded("ser",["Class"],[["Service1",,[["Library",,,,0,"File:Library/Service1.cs:Library.Service1","CSharpClass:Library.Service1"]]]]);

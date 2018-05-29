@@ -1,0 +1,1 @@
+NDMenu.OnSectionLoaded("classes.js",[[2,"Client","CSharpClass:Client.",[[1,"DescriptionInputForm"],[1,"Form1"],[2,"Properties","CSharpClass:Client.Properties.",[[1,"Resources"]]]]],[2,"Library","CSharpClass:Library.",[[1,"AllFilesMessage"],[1,"IService1"],[1,"RequestMessage"],[1,"Service1"],[1,"StreamMessage"]]],[2,"Server","CSharpClass:Server.",[[1,"Program"]]]]);

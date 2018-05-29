@@ -1,0 +1,1 @@
+NDFramePage.OnPageTitleLoaded("CSharpClass:Library.AllFilesMessage","AllFilesMessage");NDSummary.OnSummaryLoaded("CSharpClass:Library.AllFilesMessage",[["C#","CSharp"]],[["Classes","Class"],["Groups","Group"],["Variables","Variable"]],[[53,0,0,"<span class=\"Qualifier\">Library.</span>&#8203;AllFilesMessage"],[54,0,1,"Variables","Variables"],[55,0,2,"data","data"]]);

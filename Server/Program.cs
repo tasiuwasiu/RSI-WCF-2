@@ -1,16 +1,19 @@
 ﻿using Library;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.ServiceModel;
 using System.ServiceModel.Description;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Server
 {
+    /// <summary>
+    /// Klasa obslugujaca serwer 
+    /// Autor: Rafal Wasik
+    /// </summary>
     class Program
     {
+        /// <summary>
+        /// Metoda main uruchamiajaca serwer
+        /// </summary>
         static void Main(string[] args)
         {
             Uri baseAddress = new Uri("http://localhost:40013/");
@@ -37,9 +40,6 @@ namespace Server
                 Console.WriteLine("Wyjatek: {0}", e.Message);
                 mojHost.Abort();
             }
-
-
-
         }
     }
 }

@@ -1,0 +1,1 @@
+NDSearch.OnPrefixDataLoaded("des",["Variable","Class"],[["description",,[["Library.StreamMessage",,,,0,"File:Library/IService1.cs:Library.StreamMessage.description","CSharpClass:Library.StreamMessage:description"]]],["DescriptionInputForm",,[["Client",,,,1,"File:Client/DescriptionInputForm.cs:Client.DescriptionInputForm","CSharpClass:Client.DescriptionInputForm"]]]]);
