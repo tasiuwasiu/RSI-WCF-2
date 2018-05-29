@@ -8,7 +8,7 @@ using System.Text;
 
 namespace Library
 {
-    // NOTE: You can use the "Rename" command on the "Refactor" menu to change the interface name "IService1" in both code and config file together.
+
     [ServiceContract]
     public interface IService1
     {
@@ -23,18 +23,18 @@ namespace Library
 
     }
 
-        [MessageContract]
-        public class StreamMessage
-        {
-            [MessageHeader]
-            public string nazwaPliku;
+    [MessageContract]
+    public class StreamMessage
+    {
+        [MessageHeader]
+        public string nazwaPliku;
 
-            [MessageHeader]
-            public string opis;
+        [MessageHeader]
+        public string opis;
 
-            [MessageBodyMember]
-            public Stream dane;
-        }
+        [MessageBodyMember]
+        public Stream dane;
+    }
 
     [MessageContract]
     public class RequestMessage

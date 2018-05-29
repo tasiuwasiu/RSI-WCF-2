@@ -32,35 +32,35 @@ namespace Client
             fileDialog.Filter = "JPG Image | *.jpg;*.jpeg";
             fileDialog.FilterIndex = 0;
 
-            string selectedFile = "";
-
             if (fileDialog.ShowDialog() == DialogResult.OK)
             {
-                selectedFile = fileDialog.FileName;
-                string fileName = Path.GetFileName(selectedFile);
-                FileStream myFile;
-                string filePath = Path.Combine(System.Environment.CurrentDirectory, selectedFile);
-                try
-                {
-                    myFile = File.OpenRead(filePath);
-                }
-                catch (IOException ex)
-                {
-                    Console.WriteLine(String.Format("wyjatek otwarcia pliku {0}", filePath));
-                    Console.WriteLine(ex.ToString());
-                    throw ex;
-                }
+                string selectedFilePath = fileDialog.FileName;
+                string fileName = Path.GetFileName(selectedFilePath);
 
-
-
-                client.uploadFile(fileName, "   ", myFile);
-
+                DescriptionInputForm descDialog = new DescriptionInputForm(fileName, selectedFilePath, this);
+                descDialog.Show();
             }
-
-            //upload
 
         }
 
+        public void uploadFile (string filePath, string description)
+        {
+            FileStream myFile;
+            string fileName = Path.GetFileName(filePath);
+
+            try
+            {
+                myFile = File.OpenRead(filePath);
+                client.uploadFile(fileName, description, myFile);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(String.Format("Error uploading image {0}", filePath));
+                Console.WriteLine(ex.ToString());
+                throw ex;
+            }
+        }
+        
         //exit
         private void but_exit_Click(object sender, EventArgs e)
         {
@@ -76,7 +76,6 @@ namespace Client
             string[] temp = client.getFiles(out temp);
             names.AddRange(temp);
             
-
             listBox1.DataSource = null;
             listBox1.DataSource = names;
         }
@@ -88,12 +87,11 @@ namespace Client
             {
                 string selected = (string)listBox1.SelectedItem;
 
-                //download
-                string opis;
+                string description;
                 Stream stream = null;
-                client.downloadFile(selected, out opis, out stream);
+                client.downloadFile(selected, out description, out stream);
                 string filePath = Path.Combine(System.Environment.CurrentDirectory, "files", selected);
-                ZapiszPlik(stream, filePath);
+                downloadFile(stream, filePath);
 
             }
         }
@@ -103,28 +101,22 @@ namespace Client
 
         }
 
-        static void ZapiszPlik(System.IO.Stream instream, string filePath)
+        private void downloadFile(System.IO.Stream instream, string filePath)
         {
             const int bufferLength = 8192;
             int bytecount = 0;
             int counter = 0;
             byte[] buffer = new byte[bufferLength];
-            Console.WriteLine("Zapisje plik {0}", filePath);
+
             FileStream outstream = File.Open(filePath, FileMode.Create, FileAccess.Write);
 
             while ((counter = instream.Read(buffer, 0, bufferLength)) > 0)
             {
                 outstream.Write(buffer, 0, counter);
-                Console.Write(".{0}", counter);
-                bytecount += counter;
             }
-            Console.WriteLine();
-            Console.WriteLine("Zapisano {0} bajtow", bytecount);
 
             outstream.Close();
             instream.Close();
-            Console.WriteLine();
-            Console.WriteLine("Plik {0} zapisany", filePath);
         }
     }
 }
